@@ -10,7 +10,7 @@
  (c.f. Element vs Document - identical methods for getElementsByName)
  */
 #import <Foundation/Foundation.h>
-
+#import "NodeList+Mutable.h"
 @class Node, NodeList, Element; // avoiding #import here, to avoid C header loop problems.
 
 #define DEBUG_DOM_MATCH_ELEMENTS_IDS_AND_NAMES 0 // For debugging SVGKit: causes debug output on getElementById etc

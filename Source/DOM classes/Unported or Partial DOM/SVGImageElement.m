@@ -146,10 +146,11 @@ CGImageRef SVGImageCGImage(AppleNativeImageRef img)
 	{
         CGRect frame = CGRectMake(_x, _y, _width, _height);
         
-        if( imageData )
-            self.viewBox = SVGRectMake(0, 0, image.size.width, image.size.height);
-        else
-            self.viewBox = SVGRectMake(0, 0, _width, _height);
+        self.viewBox = SVGRectMake(0, 0, _width, _height);
+//        if( imageData )
+//            self.viewBox = SVGRectMake(0, 0, image.size.width, image.size.height);
+//        else
+//            self.viewBox = SVGRectMake(0, 0, _width, _height);
         
         CGImageRef imageRef = SVGImageCGImage(image);
         BOOL imageRefHasBeenRetained = false; // only one codepath CREATES a new image, because of Apple's API; the rest use an existing reference
@@ -176,12 +177,12 @@ CGImageRef SVGImageCGImage(AppleNativeImageRef img)
         /** transform our LOCAL path into ABSOLUTE space */
         frame = CGRectApplyAffineTransform(frame, [SVGHelperUtilities transformAbsoluteIncludingViewportForTransformableOrViewportEstablishingElement:self]);
         newLayer.frame = frame;
-        
+        NSLog(@"newLayer -- %@",NSStringFromCGRect(frame));
         newLayer.contents = (__bridge id)imageRef;
         if( imageRefHasBeenRetained )
             CGImageRelease( imageRef );
 	}
-		
+		 
 #if OLD_CODE
 	__block CALayer *layer = [[CALayer layer] retain];
 

@@ -53,7 +53,13 @@
 	NSAssert(FALSE, @"getPresentationAttribute: not implemented yet");
 	return nil;
 }
-
+- (NSString *)identifier {
+    if (_identifier == nil) {
+        //创建一个随机的identifer
+        _identifier = [[NSString alloc] initWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]];
+    }
+    return _identifier;
+}
 
 + (BOOL)shouldStoreContent {
 	return NO;

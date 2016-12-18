@@ -65,6 +65,10 @@
 -(Attr*) getAttributeNode:(NSString*) name;
 -(Attr*) setAttributeNode:(Attr*) newAttr;
 -(Attr*) removeAttributeNode:(Attr*) oldAttr;
+
+#pragma mark -- vLemon
+- (NodeList *)getElementsByAttributeName:(NSString *)attrName attrValue:(NSString *)value addToList:(NodeList *)nodeList;
+
 -(NodeList*) getElementsByTagName:(NSString*) name;
 
 // Introduced in DOM Level 2:

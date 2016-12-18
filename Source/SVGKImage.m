@@ -500,6 +500,7 @@ static NSMutableDictionary* globalSVGKImageCache;
 
 - (CALayer *)layerWithIdentifier:(NSString *)identifier layer:(CALayer *)layer {
 	
+    NSLog(@"%@",[layer valueForKey:kSVGElementIdentifier]);
 	if ([[layer valueForKey:kSVGElementIdentifier] isEqualToString:identifier]) {
 		return layer;
 	}

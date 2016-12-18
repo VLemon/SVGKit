@@ -95,6 +95,30 @@
 	return oldAttr;
 }
 
+#pragma mark -- vLemon
+- (NodeList *)getElementsByAttributeName:(NSString *)attrName attrValue:(NSString *)value addToList:(NodeList *)nodeList {
+    NSString *attrValue = [self getAttribute:attrName];
+    if ([attrValue isEqualToString:value]) {
+        if (nodeList == nil) {
+            nodeList = [[NodeList alloc] init];
+        }
+        [nodeList.internalArray addObject:self];
+    }else {
+        if(self.hasChildNodes){
+            for (NSInteger index = 0; index < self.childNodes.length; index++) {
+                Node *node = [self.childNodes item:index];
+                if ([node isKindOfClass:[Element class]]) {
+                    Element *elem = (Element *)node;
+                    nodeList = [elem getElementsByAttributeName:attrName attrValue:value addToList:nodeList];
+                }else {
+                    continue;
+                }
+            }
+        }
+    }
+    return nodeList;
+}
+
 -(NodeList*) getElementsByTagName:(NSString*) name
 {
 	NodeList* accumulator = [[NodeList alloc] init];
